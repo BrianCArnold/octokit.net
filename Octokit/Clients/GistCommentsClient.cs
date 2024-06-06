@@ -26,7 +26,7 @@ namespace Octokit
         /// <param name="gistId">The id of the gist</param>
         /// <param name="commentId">The id of the comment</param>
         /// <returns>Task{GistComment}.</returns>
-        [ManualRoute("GET", "/gists/{gist_id}/comments/{comment_id}")]
+        [ManualRoute("GET", "/gists/{gist_id}/comments/{commentId}")]
         public Task<GistComment> Get(string gistId, long commentId)
         {
             return ApiConnection.Get<GistComment>(ApiUrls.GistComment(gistId, commentId));
@@ -85,7 +85,7 @@ namespace Octokit
         /// <param name="commentId">The id of the comment</param>
         /// <param name="comment">The updated body of the comment</param>
         /// <returns>Task{GistComment}.</returns>
-        [ManualRoute("PATCH", "/gists/{gist_id}/comments/{comment_id}")]
+        [ManualRoute("PATCH", "/gists/{gist_id}/comments/{commentId}")]
         public Task<GistComment> Update(string gistId, long commentId, string comment)
         {
             Ensure.ArgumentNotNullOrEmptyString(comment, nameof(comment));
@@ -100,7 +100,7 @@ namespace Octokit
         /// <param name="gistId">The id of the gist</param>
         /// <param name="commentId">The id of the comment</param>
         /// <returns>Task.</returns>
-        [ManualRoute("DELETE", "/gists/{gist_id}/comments/{comment_id}")]
+        [ManualRoute("DELETE", "/gists/{gist_id}/comments/{commentId}")]
         public Task Delete(string gistId, long commentId)
         {
             return ApiConnection.Delete(ApiUrls.GistComment(gistId, commentId));

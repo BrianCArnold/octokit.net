@@ -26,7 +26,7 @@ namespace Octokit
         /// <param name="owner">The owner of the repository</param>
         /// <param name="name">The name of the repository</param>
         /// <param name="id">The issue comment id</param>
-        [ManualRoute("GET", "/repos/{owner}/{repo}/issues/comments/{comment_id}")]
+        [ManualRoute("GET", "/repos/{owner}/{repo}/issues/comments/{commentId}")]
         public Task<IssueComment> Get(string owner, string name, long id)
         {
             Ensure.ArgumentNotNullOrEmptyString(owner, nameof(owner));
@@ -41,7 +41,7 @@ namespace Octokit
         /// <remarks>http://developer.github.com/v3/issues/comments/#get-a-single-comment</remarks>
         /// <param name="repositoryId">The Id of the repository</param>
         /// <param name="id">The issue comment id</param>
-        [ManualRoute("GET", "/repositories/{id}/issues/comments/{comment_id}")]
+        [ManualRoute("GET", "/repositories/{id}/issues/comments/{commentId}")]
         public Task<IssueComment> Get(long repositoryId, long id)
         {
             return ApiConnection.Get<IssueComment>(ApiUrls.IssueComment(repositoryId, id), null);
@@ -359,7 +359,7 @@ namespace Octokit
         /// <param name="repositoryId">The Id of the repository</param>
         /// <param name="id">The comment id</param>
         /// <param name="commentUpdate">The modified comment</param>
-        [ManualRoute("PATCH", "/repositories/{id}/issues/comments/{number}")]
+        [ManualRoute("PATCH", "/repositories/{id}/issues/comments/{id}")]
         public Task<IssueComment> Update(long repositoryId, long id, string commentUpdate)
         {
             Ensure.ArgumentNotNull(commentUpdate, nameof(commentUpdate));
@@ -389,7 +389,7 @@ namespace Octokit
         /// <remarks>http://developer.github.com/v3/issues/comments/#delete-a-comment</remarks>
         /// <param name="repositoryId">The Id of the repository</param>
         /// <param name="id">The comment id</param>
-        [ManualRoute("DELETE", "/repositories/{id}/issues/comments/{number}")]
+        [ManualRoute("DELETE", "/repositories/{id}/issues/comments/{id}")]
         public Task Delete(long repositoryId, long id)
         {
             return ApiConnection.Delete(ApiUrls.IssueComment(repositoryId, id));

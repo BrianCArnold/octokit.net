@@ -219,7 +219,7 @@ public class IssueCommentsClientTests
             var numberToCreate = 2;
             using (var context = await _github.CreateRepositoryContextWithAutoInit(Helper.MakeNameWithTimestamp("IssueCommentsReactionTests")))
             {
-                var commentIds = new List<int>();
+                var commentIds = new List<long>();
 
                 // Create multiple test issues
                 for (int count = 1; count <= numberToCreate; count++)
@@ -404,7 +404,7 @@ public class IssueCommentsClientTests
             var numberToCreate = 2;
             using (var context = await _github.CreateRepositoryContextWithAutoInit(Helper.MakeNameWithTimestamp("IssueCommentsReactionTests")))
             {
-                var commentIds = new List<int>();
+                var commentIds = new List<long>();
 
                 // Create a single test issue
                 var issueNumber = await HelperCreateIssue(context.RepositoryOwner, context.RepositoryName);
@@ -594,11 +594,11 @@ public class IssueCommentsClientTests
         return issue.Number;
     }
 
-    async static Task<int> HelperCreateIssueCommentWithReactions(string owner, string repo, int number)
+    async static Task<long> HelperCreateIssueCommentWithReactions(string owner, string repo, int issueNumber)
     {
         var github = Helper.GetAuthenticatedClient();
 
-        var issueComment = await github.Issue.Comment.Create(owner, repo, number, "A test issue comment");
+        var issueComment = await github.Issue.Comment.Create(owner, repo, issueNumber, "A test issue comment");
         Assert.NotNull(issueComment);
 
         foreach (ReactionType reactionType in Enum.GetValues(typeof(ReactionType)))
